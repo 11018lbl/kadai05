@@ -2,17 +2,6 @@ import java.util.Scanner;
 
 public class kadai05{
 
-  public static int min(x[]){
-    int minimamu;
-    for(i=0;i<x.length;i++){
-      if(minimamu<x[i]){
-        minimamu=i;
-      }
-    }
-    return minimamu;
-  }
-
-
   public static void main(String[] args){
     Scanner scanner = new Scanner(System.in);
     System.out.println("場所の数を入力");
@@ -30,7 +19,7 @@ public class kadai05{
 
         String mess = numx+","+numy+"の距離を入力";
         System.out.println(mess);
-        System.out.println("＊つながっていない場合は0を入力")
+        System.out.println("＊つながっていない場合は0を入力");
         maplist[i][l]=scanner.nextInt();
       }
     }
@@ -49,22 +38,31 @@ public class kadai05{
     route = new double[map];
     for(n=0;n<map;n++){
       if(maplist[startin][n]>0){
-        route[n]=maplist[startin][n]
+        route[n]=maplist[startin][n];
       }
     }
-    int minadd = 
 
     for(i=1;route[goalin]==0;i++){
       for(n=0;n<map;n++){
         if(maplist[startin][n]>0){
-          route[n]=maplist[startin][n]
+          route[n]=maplist[startin][n];
         }
       }
+
+    int minadd=0;
+    for(i=0; i<route.length; i++){
+      if(minadd>route[i] && route[i]>0){
+        minadd=i;
+      }
     }
+    double minnum = route[minadd];
+    for(m=0;n<map;m++){
+      if(maplist[minadd][m]>0 && route[minadd]>maplist[minadd][m]){
+          route[minadd]=maplist[minadd][m];
+      }
+    }
+    route[minadd]=minnum+route[minadd];
+    }
+  System.out.println("最短経路："+route[goalin]);
   }
 }
-
-
-
-//####参考###
-//https://nw.tsuda.ac.jp/lec/dijkstra/
